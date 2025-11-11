@@ -14,7 +14,6 @@ body {
   font-family: 'LatoRegular', sans-serif;
 }
 
-
 .main-page {
   padding: 20px 40px;
   font-family: 'LatoRegular', sans-serif;
@@ -22,9 +21,9 @@ body {
 
 /* Хедер */
 .header {
-  width: 100vw; /* во всю ширину экрана */
-  margin-left: -50px; /* компенсируем отступ родителя */
-  margin-top: -30px; /* чтобы не было отступа сверху */
+  width: 100vw;
+  margin-left: -50px;
+  margin-top: -30px;
   height: 80px;
   background-color: #0074B8;
   display: flex;
@@ -58,14 +57,12 @@ body {
   margin: 8px 0 0 80px;
 }
 
-
 .card-list {
   display: flex;
   gap: 16px;
   margin: 20px 0; 
   padding-left: 80px; 
 }
-
 
 .card {
   width: 213px;
@@ -98,7 +95,7 @@ body {
 .card-detail__row {
   display: flex;
   position: relative;
-  gap: 40px; /* уменьшили расстояние между колонками */
+  gap: 40px;
   flex-wrap: wrap;
 }
 .card-detail__col {
@@ -106,7 +103,6 @@ body {
   flex-direction: column;
   gap: 12px;
 }
-
 
 /* Поля ввода */
 .card-detail__section {
@@ -122,11 +118,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-/* .card-detail__section.small-field textarea {
-  width: 300px;
-  height: 46px;
-} */
 
 /* Подраздел карточки */
 .card-subsection {
@@ -147,9 +138,34 @@ body {
 /* Кнопки */
 .add-btn-single {
   position: absolute;
-  top: 50%;
-  right: -10px;
+  top: -35px;
+  right: -50px;
   transform: translateY(-50%);
+}
+
+.add-btn-single1 {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Горизонтальный скролл для ряда */
+.card-detail__row-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 8px 0;
+  align-items: flex-start;
+}
+
+.card-detail__row--horizontal {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
 .add-btn img,
@@ -171,7 +187,7 @@ body {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.save-btn:hover {
-  background-color: #0f66a3;
+.save-btn:hover { 
+  background-color: #0f66a3; 
   transform: scale(1.03);
 }
