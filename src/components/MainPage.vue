@@ -51,7 +51,7 @@
           <!-- Главная секция -->
           <div class="card-detail__section full-width">
             <label>Направление работ / Ключевые инициативы</label>
-            <textarea v-model="sub.mainText" placeholder="Введите текст..."></textarea>
+            <textarea v-model="sub.mainText" placeholder="|"></textarea>
           </div>
 
           <!-- Горизонтальные ряды -->
@@ -65,11 +65,11 @@
               <div class="card-detail__col card-detail__col--main">
                 <div class="card-detail__section small-field">
                   <label>Наименование мероприятия</label>
-                  <textarea v-model="row.eventName" placeholder="Введите текст..."></textarea>
+                  <textarea v-model="row.eventName" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Сроки завершения</label>
-                  <textarea v-model="row.deadline" placeholder="Введите текст..."></textarea>
+                  <textarea v-model="row.deadline" placeholder="|"></textarea>
                 </div>
               </div>
 
@@ -77,11 +77,11 @@
               <div class="card-detail__col card-detail__col--side">
                 <div class="card-detail__section small-field">
                   <label>Ответственные исполнители</label>
-                  <textarea v-model="row.responsible" placeholder="Введите текст..."></textarea>
+                  <textarea v-model="row.responsible" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Форма завершения</label>
-                  <textarea v-model="row.completionForm" placeholder="Введите текст..."></textarea>
+                  <textarea v-model="row.completionForm" placeholder="|"></textarea>
                 </div>
 
                 <v-btn
