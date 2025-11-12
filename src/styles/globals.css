@@ -12,12 +12,12 @@
 
 body {
   font-family: 'LatoRegular', sans-serif;
-  background-color: rgb(245, 244, 244);
-}
+  background-color: rgb(243, 241, 241);}
 
 .main-page {
   padding: 20px 40px;
   font-family: 'LatoRegular', sans-serif;
+    background-color: rgb(243, 241, 241);
 }
 
 /* Хедер */
@@ -65,18 +65,55 @@ body {
   padding-left: 80px; 
 }
 
+.enter-icon {
+  width: 533px;
+  height: 46px; 
+  margin-top: 8px; 
+  border-radius: 6px;
+  border: 2px solid #dadada; /* более яркая рамка */
+  background-color: #f5f9fc; /* легкий фон */
+  padding: 8px;
+  font-size: 16px;
+  font-family: 'LatoRegular', sans-serif;
+  color: #212121;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.enter-icon:focus {
+  outline: none;
+  border-color: #dadada; /* более насыщенный синий при фокусе */
+  box-shadow: 0 0 5px rgba(204, 204, 205, 0.5);
+  background-color: #f5f9fc; /* фон становится белым при фокусе */
+}
+
+
 .card-list__title {
   font-family: 'LatoBold', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   margin-bottom: 12px;
-  width: 20px;
+  width: 213px;
+  height: 77px;
+  display: flex;
+  align-items: flex-start; 
+  justify-content: flex-start;
+  white-space: pre-line;
+  text-align: left;
+  padding: 8px; 
 }
+
+.card-list__title-text {
+  white-space: pre-line;   /* сохраняет переносы \n */
+  text-align: left;        /* левый край */
+  padding: 8px;  
+  font-size: 14px;          /* отступы внутри карточки */
+}
+
+
 
 .card {
   width: 213px;
   height: 77px;
   background: #0074B8;
-  /* border: 1px solid #0074B8; */
   border-radius: 8px;
   cursor: pointer;
   display: flex;
@@ -194,7 +231,7 @@ body {
  
 .save-btn { 
   background-color: #127CC1; 
-  color: #fff; 
+  color: #127CC1; 
   font-family: 'Arial', sans-serif;
   font-weight: bold;
   font-size: 16px; 
@@ -204,8 +241,31 @@ body {
   margin: 20px 80px 0 80px; 
   transition: background-color 0.3s, transform 0.2s; 
 } 
- 
 .save-btn:hover {  
   background-color: #0f66a3;  
   transform: scale(1.03); 
+} 
+
+/* Кнопки добавить / удалить */
+.delete-btn,
+.add-btn,
+.add-btn-single1 {
+  background-color: transparent !important; /* прозрачный фон */
+  box-shadow: none !important; /* убираем тень */
+  min-width: 42px !important;
+  min-height: 42px !important;
+  width: 42px !important;
+  height: 42px !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn img,
+.add-btn img,
+.add-btn-single1 img {
+  width: 42px;
+  height: 42px;
 }

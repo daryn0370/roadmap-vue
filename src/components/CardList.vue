@@ -7,13 +7,14 @@
       @click="$emit('card-selected', index)"
       :class="['card', { 'card--active': selectedCard === index }]"
     >
-      {{ card.title }}
+      <div class="card-list__title-text">
+        {{ card.title }}
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
 defineProps({
   cards: Array,
   selectedCard: Number

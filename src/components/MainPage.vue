@@ -1,11 +1,19 @@
 <template>
   <div class="main-page">
-    <Header />
+    <Header>
+      <!-- Профиль в правом верхнем углу -->
+      <template #right>
+        <div class="user-block">
+          <span>{{ currentUser?.username }}</span>
+          <v-btn small color="red" @click="logout">Выйти</v-btn>
+        </div>
+      </template>
+    </Header>
 
     <nav class="breadcrumbs">
-      <p class="text-regular"> 
-        Главная / Мероприятия / Дорожная карта мероприятий 
-      </p> 
+      <p class="text-regular">
+        Главная / Мероприятия / Дорожная карта мероприятий
+      </p>
     </nav>
 
     <h1 class="main-h1">Дорожная карта мероприятий</h1>
@@ -40,7 +48,7 @@
             <v-btn
               v-if="subIndex === subsections.length - 1"
               color="green"
-              class="ml-4"
+              class="ml-4 add-btn"
               @click="addSubsection"
             >
               <img src="@/assets/plus.png" alt="Добавить раздел" />
@@ -64,11 +72,11 @@
               <div class="card-detail__col card-detail__col--main">
                 <div class="card-detail__section small-field">
                   <label>Наименование мероприятия</label>
-                 <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
+                  <textarea class="enter-icon" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Сроки завершения</label>
-                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
+                  <textarea class="enter-icon" placeholder="|"></textarea>
                 </div>
               </div>
 
@@ -76,16 +84,16 @@
               <div class="card-detail__col card-detail__col--side">
                 <div class="card-detail__section small-field">
                   <label>Ответственные исполнители</label>
-                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
+                  <textarea class="enter-icon" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Форма завершения</label>
-                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
+                  <textarea class="enter-icon" placeholder="|"></textarea>
                 </div>
 
                 <v-btn
                   icon
-                  class="delete-btn mt-2"
+                  class="delete-btn"
                   @click="removeRow(subIndex, rowIndex)"
                 >
                   <img src="@/assets/delete.png" alt="Удалить ряд" />
@@ -115,12 +123,33 @@
 import Header from '../components/Header.vue'
 import CardList from '../components/CardList.vue'
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
+const currentUser = ref(null)
+
+// Проверка авторизации при загрузке страницы
+onMounted(() => {
+  const user = localStorage.getItem('currentUser')
+  if (!user) {
+    router.push('/login')
+  } else {
+    currentUser.value = JSON.parse(user)
+  }
+})
+
+// Logout
+function logout() {
+  localStorage.removeItem('currentUser')
+  router.push('/login')
+}
+
+// Карточки
 const cards = [
-  { title: 'СИСТЕМА МЕНЕДЖМЕНТА В ОБЛАСТИ ПБ, ОТ И ОС' },
-  { title: 'ПОВЫШЕНИЕ КОМПЕТЕНЦИЙ В ОБЛАСТИ ПБ, ОТ И ОС' },
-  { title: 'ЦИФРОВИЗАЦИЯ ПБ, ОТ И ОС' },
-  { title: 'ВЗАИМОДЕЙСТВИЕ С ПОДРЯДНЫМИ ОРГАНИЗАЦИЯМИ В ОБЛАСТИ ПБ, ОТ И ОС' },
+  { title: 'СИСТЕМА\nМЕНЕДЖМЕНТА В\nОБЛАСТИ ПБ, ОТ И ОС' },
+  { title: 'ПОВЫШЕНИЕ КОМПЕТЕНЦИЙ В\nОБЛАСТИ ПБ, ОТ И ОС' },
+  { title: 'ЦИФРОВИЗАЦИЯ ПБ,\n ОТ И ОС' },
+  { title: 'ВЗАИМОДЕЙСТВИЕ С ПОДРЯДНЫМИ\nОРГАНИЗАЦИЯМИ В\nОБЛАСТИ ПБ, ОТ И ОС' },
 ]
 
 const selectedCard = ref(null)
@@ -200,6 +229,61 @@ function saveData() {
   width: 533px;
   height: 46px;
   margin-top: 8px;
-  border-radius: 4px;
+  border-radius: 6px;
+  border: 2px solid #e9eaeb;
+  background-color: #ffffff;
+  padding: 8px;
+  font-size: 16px;
+  color: #212121;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.enter-icon:focus {
+  outline: none;
+  border-color: #0074B8;
+  box-shadow: 0 0 5px rgba(0, 116, 184, 0.5);
+  background-color: #ffffff;
+}
+
+/* Кнопка сохранить */
+.save-btn {
+  background-color: #0074B8;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+.save-btn:hover {
+  background-color: #005a9e;
+}
+
+/* Блок пользователя в header */
+.user-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: #212121;
+}
+
+/* Кнопки добавить/удалить с фиксированным размером */
+.delete-btn,
+.add-btn,
+.add-btn-single1 {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  min-width: 42px;
+  min-height: 42px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+}
+
+/* Текст карточек с переносами и левым выравниванием */
+.card-list__title-text {
+  white-space: pre-line;
+  text-align: left;
+  padding: 8px;
 }
 </style>
+

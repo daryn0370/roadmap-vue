@@ -1,14 +1,12 @@
 <template>
   <v-app>
     <v-main>
-      <MainPage />
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
-<script setup>
-import MainPage from './components/MainPage.vue'
-</script>
+<script setup></script>
 
 <style>
 @import './styles/globals.css';
