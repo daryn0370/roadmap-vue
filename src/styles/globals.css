@@ -65,6 +65,13 @@ body {
   padding-left: 80px; 
 }
 
+.card-list__title {
+  font-family: 'LatoBold', sans-serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+  width: 20px;
+}
+
 .card {
   width: 213px;
   height: 77px;

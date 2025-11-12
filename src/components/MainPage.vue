@@ -3,9 +3,9 @@
     <Header />
 
     <nav class="breadcrumbs">
-      <p class="text-regular">
-        Главная / Мероприятия / Дорожная карта мероприятий
-      </p>
+      <p class="text-regular"> 
+        Главная / Мероприятия / Дорожная карта мероприятий 
+      </p> 
     </nav>
 
     <h1 class="main-h1">Дорожная карта мероприятий</h1>
@@ -37,14 +37,13 @@
               <img src="@/assets/delete.png" alt="Удалить" />
             </v-btn>
 
-            <!-- Кнопка добавления раздела только для последнего -->
             <v-btn
               v-if="subIndex === subsections.length - 1"
               color="green"
               class="ml-4"
               @click="addSubsection"
             >
-              <img src="@/assets/plus.png" alt="Добавить ряд" />
+              <img src="@/assets/plus.png" alt="Добавить раздел" />
             </v-btn>
           </div>
 
@@ -65,11 +64,11 @@
               <div class="card-detail__col card-detail__col--main">
                 <div class="card-detail__section small-field">
                   <label>Наименование мероприятия</label>
-                  <textarea v-model="row.eventName" placeholder="|"></textarea>
+                 <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Сроки завершения</label>
-                  <textarea v-model="row.deadline" placeholder="|"></textarea>
+                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
                 </div>
               </div>
 
@@ -77,11 +76,11 @@
               <div class="card-detail__col card-detail__col--side">
                 <div class="card-detail__section small-field">
                   <label>Ответственные исполнители</label>
-                  <textarea v-model="row.responsible" placeholder="|"></textarea>
+                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
                 </div>
                 <div class="card-detail__section small-field">
                   <label>Форма завершения</label>
-                  <textarea v-model="row.completionForm" placeholder="|"></textarea>
+                  <textarea alt="Поле ввода" class="enter-icon" placeholder="|"></textarea>
                 </div>
 
                 <v-btn
@@ -94,7 +93,7 @@
               </div>
             </div>
 
-            <!-- Кнопка добавления ряда в конце контейнера -->
+            <!-- Кнопка добавления ряда -->
             <v-btn icon class="add-btn-single1" @click="addRow(subIndex)">
               <img src="@/assets/plus.png" alt="Добавить ряд" />
             </v-btn>
@@ -131,29 +130,22 @@ onMounted(() => {
   const savedData = localStorage.getItem('roadmapSubsections')
   if (savedData) {
     subsections.value = JSON.parse(savedData)
-    subsections.value.forEach(sub => {
-      if (!sub.rows || sub.rows.length === 0) {
-        sub.rows = [{
-          id: Date.now() + Math.random(),
-          eventName: '',
-          deadline: '',
-          responsible: '',
-          completionForm: '',
-        }]
-      }
-    })
   } else {
-    subsections.value = [{
-      id: Date.now(),
-      mainText: '',
-      rows: [{
-        id: Date.now() + 1,
-        eventName: '',
-        deadline: '',
-        responsible: '',
-        completionForm: '',
-      }]
-    }]
+    subsections.value = [
+      {
+        id: Date.now(),
+        mainText: '',
+        rows: [
+          {
+            id: Date.now() + 1,
+            eventName: '',
+            deadline: '',
+            responsible: '',
+            completionForm: '',
+          },
+        ],
+      },
+    ]
   }
 })
 
@@ -165,13 +157,15 @@ function addSubsection() {
   subsections.value.push({
     id: Date.now(),
     mainText: '',
-    rows: [{
-      id: Date.now() + Math.random(),
-      eventName: '',
-      deadline: '',
-      responsible: '',
-      completionForm: '',
-    }]
+    rows: [
+      {
+        id: Date.now() + Math.random(),
+        eventName: '',
+        deadline: '',
+        responsible: '',
+        completionForm: '',
+      },
+    ],
   })
 }
 
@@ -200,3 +194,12 @@ function saveData() {
   alert('Данные сохранены!')
 }
 </script>
+
+<style scoped>
+.enter-icon {
+  width: 533px;
+  height: 46px;
+  margin-top: 8px;
+  border-radius: 4px;
+}
+</style>

@@ -1,6 +1,7 @@
 <template>
   <div class="card-list">
     <div
+      class="card-list__title"
       v-for="(card, index) in cards"
       :key="index"
       @click="$emit('card-selected', index)"
